@@ -34,7 +34,7 @@ function closeForm() {
     document.getElementById("overlay").style.display = "none";
 }
 
-const BACKEND_ENDPOINT = 'http://127.0.0.1:8000/api/validate-card/';
+const BACKEND_ENDPOINT = 'https://ygo-grid-backend.onrender.com/api/validate-card/';
 
 function submitAnswer() {
     const inputField = document.getElementById("input-field").value;
