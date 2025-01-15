@@ -48,6 +48,43 @@ function showToast(message) {
 
 const BACKEND_ENDPOINT = 'https://ygo-grid-backend.onrender.com/api/validate-card/';
 
+// Awesomplete Integration
+document.addEventListener("DOMContentLoaded", function () {
+    const inputField = document.getElementById("input-field");
+
+    if (!inputField) {
+        console.error("Input field not found!");
+        return;
+    }
+
+    console.log("Input field found:", inputField);
+
+    const awesomplete = new Awesomplete(inputField, {
+        minChars: 2, // Show suggestions after typing 2 characters
+        maxItems: 10, // Limit to 10 suggestions
+    });
+    console.log("Awesomplete initialized:", awesomplete);
+
+    inputField.addEventListener("input", function () {
+        const query = inputField.value;
+    
+        if (query.length > 1) { // Trigger fetch only for meaningful input
+            const url = `https://ygo-grid-backend.onrender.com/api/autocomplete/?q=${encodeURIComponent(query)}`;
+            console.log(`Fetching suggestions from: ${url}`); // Debugging log
+    
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Suggestions received:", data); // Debugging log
+                    awesomplete.list = data; // Populate Awesomplete with API data
+                })
+                .catch(error => {
+                    console.error("Error fetching suggestions:", error);
+                });
+        }
+    });    
+});
+
 function submitAnswer() {
     const inputField = document.getElementById("input-field").value;
 
