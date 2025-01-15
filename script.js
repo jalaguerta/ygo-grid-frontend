@@ -34,6 +34,18 @@ function closeForm() {
     document.getElementById("overlay").style.display = "none";
 }
 
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.classList.add('show');
+
+    // Remove the toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+
 const BACKEND_ENDPOINT = 'https://ygo-grid-backend.onrender.com/api/validate-card/';
 
 function submitAnswer() {
@@ -42,7 +54,7 @@ function submitAnswer() {
     if (inputField.trim() !== "") {
         const criteria = GRID_CRITERIA[currentCell];
         if (!criteria) {
-            alert("Invalid cell. Please try again.");
+            showToast("Invalid cell. Please try again.");
             return;
         }
 
@@ -74,16 +86,16 @@ function submitAnswer() {
                     document.getElementById("score").textContent = score;
 
                 } else {
-                    alert(data.message || "Invalid guess.");
+                    showToast(data.message || "Invalid guess.");
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert(`Error connecting to the server:\n\n${error.message}`);
+                showToast(`Error connecting to the server:\n\n${error.message}`);
             });
 
         closeForm();
     } else {
-        alert("Please enter a guess!");
+        showToast("Please enter a guess!");
     }
 }
