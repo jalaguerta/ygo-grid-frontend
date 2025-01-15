@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu-Gi-Oh! 3x3 Grid Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Yu-Gi-Oh! 3x3 Grid Game</h1>
+    </header>
+
+    <div class="game-container">
+        <!-- Grid with Labels -->
+        <div class="grid-container">
+            <!-- Column Labels -->
+            <div class="label"></div> <!-- Empty corner space -->
+            <div class="label column-label">0 ATK</div>
+            <div class="label column-label">Flip Effect Monster</div>
+            <div class="label column-label">Fire Monster</div>
+
+            <!-- Row Labels and Grid Items -->
+            <div class="label row-label">1800 DEF</div>
+            <div class="grid-item" onclick="openForm('cell-1')"></div>
+            <div class="grid-item" onclick="openForm('cell-2')"></div>
+            <div class="grid-item" onclick="openForm('cell-3')"></div>
+
+            <div class="label row-label">Tuner</div>
+            <div class="grid-item" onclick="openForm('cell-4')"></div>
+            <div class="grid-item" onclick="openForm('cell-5')"></div>
+            <div class="grid-item" onclick="openForm('cell-6')"></div>
+
+            <div class="label row-label">Level 2 Monster</div>
+            <div class="grid-item" onclick="openForm('cell-7')"></div>
+            <div class="grid-item" onclick="openForm('cell-8')"></div>
+            <div class="grid-item" onclick="openForm('cell-9')"></div>
+        </div>
+    </div>
+
+    <div class="game-info">
+        <p>Guess the correct Yu-Gi-Oh! card for each intersection of categories!</p>
+        <p>Your current score: <span id="score">0</span></p>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeForm()"></div>
+    <div class="popup-form" id="popup-form">
+        <h3>Enter Your Guess</h3>
+        <input type="text" id="input-field" placeholder="Guess Here">
+        <div class="popup-buttons">
+            <button onclick="submitAnswer()">Submit</button>
+            <button onclick="closeForm()">Cancel</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
