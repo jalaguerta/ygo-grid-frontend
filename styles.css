@@ -214,7 +214,7 @@ h1 {
     z-index: 1000; /* Ensure it's above other elements */
     background: white; /* Ensure background is visible */
     border: 1px solid #ccc;
-    max-height: 200px; /* Limit the height of the dropdown */
+    max-height: 250px; /* Limit the height of the dropdown */
     overflow-y: auto;  /* Enable vertical scrolling */
     scrollbar-width: thin; /* For modern browsers */
 }
