@@ -46,7 +46,10 @@ function showToast(message) {
 }
 
 
-const BACKEND_ENDPOINT = 'https://ygo-grid-backend.onrender.com/api/validate-card/';
+//const BACKEND_ENDPOINT = 'https://ygo-grid-backend.onrender.com/api/validate-card/';
+
+console.log("Backend Endpoint:", BASE_URL);
+
 
 // Awesomplete Integration
 document.addEventListener("DOMContentLoaded", function () {
@@ -69,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const query = inputField.value;
     
         if (query.length > 1) { // Trigger fetch only for meaningful input
-            const url = `https://ygo-grid-backend.onrender.com/api/autocomplete/?q=${encodeURIComponent(query)}`;
+            const url = `${BASE_URL}/api/autocomplete/?q=${encodeURIComponent(query)}`;
             console.log(`Fetching suggestions from: ${url}`); // Debugging log
     
             fetch(url)
@@ -98,7 +101,7 @@ function submitAnswer() {
         console.log("Selected Cell:", currentCell);
         console.log("Criteria Sent:", criteria); // Log for debugging
 
-        fetch(BACKEND_ENDPOINT, {
+        fetch(`${BASE_URL}/api/validate-card/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
