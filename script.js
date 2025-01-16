@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const awesomplete = new Awesomplete(inputField, {
         minChars: 2, // Show suggestions after typing 2 characters
-        maxItems: 10, // Limit to 10 suggestions
+        maxItems: 20, // Limit to 10 suggestions
     });
     console.log("Awesomplete initialized:", awesomplete);
 
