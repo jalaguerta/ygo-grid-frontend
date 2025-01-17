@@ -1,5 +1,6 @@
 let score = 0; // Initialize the score
 let currentCell = null; // Track which cell was clicked
+const guessedCards = new Set();
 
 const GRID_CRITERIA = {
     // Row: 1800 DEF
@@ -91,7 +92,15 @@ document.addEventListener("DOMContentLoaded", function () {
 function submitAnswer() {
     const inputField = document.getElementById("input-field").value;
 
+    
+
     if (inputField.trim() !== "") {
+
+        if (guessedCards.has(inputField.toLowerCase())) {
+            showToast(`"${inputField}" has already been guessed! Try another card.`);
+            return;
+        }
+
         const criteria = GRID_CRITERIA[currentCell];
         if (!criteria) {
             showToast("Invalid cell. Please try again.");
@@ -122,6 +131,11 @@ function submitAnswer() {
                     }
                     //alert(`Correct! ${data.card_name} was validated.`);
                     // above comented out so we dont have alert box anymore
+
+                    // Add the guessed card to the Set to prevent future duplicates
+                    guessedCards.add(inputField.toLowerCase());
+
+                    // increment the score
                     score++
                     document.getElementById("score").textContent = score;
 
